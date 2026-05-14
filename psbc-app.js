@@ -595,7 +595,7 @@ class PSBCStore {
 // Global functions for onclick handlers
 function showAdminLogin() {
     const password = prompt('Enter admin password:');
-    if (password === 'admin123') {
+    if (password === '@PSBCgang90') {
         store.showAdminPanel();
     }
 }
