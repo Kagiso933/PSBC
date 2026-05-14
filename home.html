@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PARK SHOP BOYZ CLUB - Wealth is of the Heart and Mind</title>
+    <meta name="description" content="Luxury African streetwear brand. Shop exclusive collections, limited edition drops, and premium apparel.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #ffffff;
+            --accent: #00D4AA;
+            --accent-dark: #00B894;
+            --text: #1a1a1a;
+            --text-light: #757575;
+            --border: #EBEBEB;
+            --bg-subtle: #FAFAFA;
+            --overlay: rgba(0, 0, 0, 0.85);
+            --success: #10B981;
+            --error: #EF4444;
+            --warning: #F59E0B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--secondary);
+            color: var(--text);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-logo {
+            color: white;
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: 8px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Top Banner */
+        .top-banner {
+            background: var(--primary);
+            color: var(--secondary);
+            text-align: center;
+            padding: 0.65rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 4rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: var(--primary);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .logo:hover {
+            color: var(--accent);
+        }
+
+        .nav-center {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-center a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+        }
+
+        .nav-center a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-center a:hover {
+            color: var(--accent);
+        }
+
+        .nav-center a:hover::before {
+            width: 100%;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1.75rem;
+            align-items: center;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.15rem;
+            color: var(--text);
+            position: relative;
+            transition: all 0.3s;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-btn:hover {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .icon-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            height: 85vh;
+            overflow: hidden;
+        }
+
+        .hero-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 4rem;
+            max-width: 1600px;
+            margin: 0 auto;
+            background: linear-gradient(to right, rgba(0,0,0,0.5), transparent);
+        }
+
+        .hero-content h1 {
+            font-size: 6.5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 1.5rem;
+            line-height: 0.95;
+            color: white;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 400;
+            color: rgba(255,255,255,0.95);
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            padding: 1.25rem 3.5rem;
+            background: var(--secondary);
+            color: var(--primary);
+            border: 2px solid var(--secondary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s;
+            width: fit-content;
+            text-decoration: none;
+        }
+
+        .hero-cta:hover {
+            background: transparent;
+            color: white;
+        }
+
+        .hero-nav {
+            position: absolute;
+            bottom: 3rem;
+            right: 4rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 3;
+        }
+
+        .hero-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .hero-dot.active {
+            background: white;
+            width: 32px;
+            border-radius: 4px;
+        }
+
+        /* Featured Categories */
+        .featured-categories {
+            padding: 5rem 4rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .category-card {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.5s;
+        }
+
+        .category-card:hover {
+            transform: scale(1.01);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s;
+        }
+
+        .category-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .category-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 3rem;
+            color: white;
+        }
+
+        .category-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 0.75rem;
+        }
+
+        .category-link {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            transition: gap 0.3s;
+        }
+
+        .category-link:hover {
+            gap: 1rem;
+        }
+
+        /* Collection Showcase */
+        .collection-showcase {
+            background: var(--bg-subtle);
+            padding: 6rem 4rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-light);
+        }
+
+        .collection-filters {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: none;
+            border: none;
+            padding: 0.75rem 0;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            color: var(--text-light);
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--accent);
+        }
+
+        .filter-btn:hover {
+            color: var(--primary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2.5rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: white;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s;
+            border: 1px solid transparent;
+        }
+
+        .product-card:hover {
+            border-color: var(--border);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            transform: translateY(-8px);
+        }
+
+        .product-card.coming-soon .product-image-wrapper::after {
+            content: 'COMING SOON';
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .product-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            background: var(--bg-subtle);
+            overflow: hidden;
+        }
+
+        .product-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--accent);
+            color: white;
+            padding: 0.4rem 0.9rem;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .product-badge.sold-out {
+            background: var(--error);
+        }
+
+        .product-badge.limited {
+            background: var(--warning);
+        }
+
+        .product-quick-view {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            opacity: 0;
+            background: white;
+            color: var(--primary);
+            padding: 0.875rem 2rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border: 1px solid var(--primary);
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 2;
+        }
+
+        .product-card:hover .product-quick-view {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .product-quick-view:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .product-info {
+            padding: 1.75rem;
+        }
+
+        .product-category {
+            font-size: 0.7rem;
+            color: var(--text-light);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: 0.3px;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.25rem;
+        }
+
+        .product-colors {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .color-swatch {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .color-swatch:hover {
+            border-color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .add-to-bag {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .add-to-bag:hover {
+            background: var(--accent);
+        }
+
+        .add-to-bag:disabled {
+            background: var(--text-light);
+            cursor: not-allowed;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            right: -500px;
+            top: 0;
+            width: 500px;
+            height: 100vh;
+            background: white;
+            box-shadow: -10px 0 50px rgba(0,0,0,0.15);
+            z-index: 3000;
+            transition: right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 2.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: all 0.3s;
+            padding: 0.5rem;
+        }
+
+        .close-cart:hover {
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        .close-cart svg {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem 2.5rem;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cart-item-image {
+            width: 110px;
+            height: 140px;
+            background: var(--bg-subtle);
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-item-meta {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .cart-item-price {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+        }
+
+        .quantity-control {
+            display: flex;
+            gap: 1.25rem;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .qty-btn {
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--border);
+            background: white;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+            transition: all 0.3s;
+        }
+
+        .qty-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            font-size: 0.75rem;
+            text-decoration: underline;
+            transition: color 0.3s;
+        }
+
+        .remove-item:hover {
+            color: var(--primary);
+        }
+
+        .cart-footer {
+            padding: 2.5rem;
+            border-top: 1px solid var(--border);
+            background: var(--bg-subtle);
+        }
+
+        .cart-subtotal {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            font-size: 1.6rem;
+            font-weight: 700;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1.5rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1rem;
+        }
+
+        .checkout-btn:hover {
+            background: var(--accent-dark);
+        }
+
+        .secure-notice {
+            text-align: center;
+            font-size: 0.7rem;
+            color: var(--text-light);
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .secure-notice svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* Checkout Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 4000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .checkout-modal {
+            background: white;
+            width: 90%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            padding: 2.5rem;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .modal-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 2.5rem;
+            right: 2.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: all 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        .close-modal svg {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .modal-content {
+            padding: 2.5rem;
+        }
+
+        .form-section {
+            margin-bottom: 3rem;
+        }
+
+        .form-section h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .payment-method {
+            padding: 1.25rem;
+            border: 2px solid var(--border);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .payment-method svg {
+            width: 32px;
+            height: 32px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .payment-method:hover,
+        .payment-method.active {
+            border-color: var(--accent);
+            background: rgba(0, 212, 170, 0.05);
+        }
+
+        .stitch-info {
+            background: var(--bg-subtle);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 3px solid var(--accent);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .order-summary {
+            background: var(--bg-subtle);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .summary-row.total {
+            font-size: 1.6rem;
+            font-weight: 700;
+            padding-top: 1.25rem;
+            border-top: 2px solid var(--border);
+            margin-top: 1rem;
+        }
+
+        .place-order-btn {
+            width: 100%;
+            padding: 1.75rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1.5rem;
+        }
+
+        .place-order-btn:hover {
+            background: var(--accent-dark);
+        }
+
+        .place-order-btn:disabled {
+            background: var(--text-light);
+            cursor: not-allowed;
+        }
+
+        .security-info {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Success Modal */
+        .success-modal {
+            text-align: center;
+            padding: 4rem 3rem;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            color: var(--success);
+        }
+
+        .success-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .success-modal h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .success-modal p {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            line-height: 1.9;
+        }
+
+        .order-number {
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .continue-btn {
+            padding: 1.25rem 3.5rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .continue-btn:hover {
+            background: var(--accent-dark);
+        }
+
+        /* Admin Portal */
+        .admin-portal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--bg-subtle);
+            z-index: 5000;
+            overflow-y: auto;
+        }
+
+        .admin-portal.active {
+            display: block;
+        }
+
+        .admin-header {
+            background: var(--primary);
+            color: white;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .admin-logout {
+            padding: 0.75rem 2rem;
+            background: white;
+            color: var(--primary);
+            border: none;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .admin-logout:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        .admin-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .admin-tab {
+            padding: 1rem 2rem;
+            background: none;
+            border: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            color: var(--text-light);
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.3s;
+        }
+
+        .admin-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--accent);
+        }
+
+        .admin-panel {
+            display: none;
+        }
+
+        .admin-panel.active {
+            display: block;
+        }
+
+        .product-form {
+            background: white;
+            padding: 3rem;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .product-form h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .image-upload {
+            margin-bottom: 2rem;
+        }
+
+        .image-upload label {
+            display: block;
+            padding: 3rem;
+            border: 2px dashed var(--border);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .image-upload label:hover {
+            border-color: var(--accent);
+            background: var(--bg-subtle);
+        }
+
+        .image-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .image-preview-item {
+            position: relative;
+            aspect-ratio: 1;
+            border: 1px solid var(--border);
+        }
+
+        .image-preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .remove-image {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: var(--error);
+            color: white;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .btn-primary {
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-dark);
+        }
+
+        .products-table {
+            background: white;
+            border: 1px solid var(--border);
+            width: 100%;
+        }
+
+        .products-table th,
+        .products-table td {
+            padding: 1.25rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .products-table th {
+            background: var(--bg-subtle);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .action-btn {
+            padding: 0.5rem 1rem;
+            margin-right: 0.5rem;
+            border: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-edit {
+            background: var(--warning);
+            color: white;
+        }
+
+        .btn-delete {
+            background: var(--error);
+            color: white;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 5rem 2rem;
+            color: var(--text-light);
+        }
+
+        .empty-cart-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            opacity: 0.2;
+        }
+
+        .empty-cart-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 5rem 4rem 3rem;
+        }
+
+        .footer-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.85rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 2rem;
+            letter-spacing: 0.3px;
+        }
+
+        .footer-section h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.9rem;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 1024px) {
+            nav {
+                padding: 1.25rem 2rem;
+            }
+
+            .nav-center {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 4rem;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+
+            .collection-filters {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">PSBC</div>
+    </div>
+
+    <!-- Top Banner -->
+    <div class="top-banner">
+        Free Express Shipping on Orders Over R1,500 | Complimentary Gift Wrapping | Secure Payment via Stitch
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo" onclick="window.location.reload()">PSBC</div>
+            <ul class="nav-center">
+                <li><a href="#new">New Arrivals</a></li>
+                <li><a href="#collections">Collections</a></li>
+                <li><a href="#collaborations">Collaborations</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <div class="nav-icons">
+                <button class="icon-btn" aria-label="Search">
+                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                </button>
+                <button class="icon-btn" aria-label="Account" onclick="showAdminLogin()">
+                    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </button>
+                <button class="icon-btn" id="cartBtn" aria-label="Cart">
+                    <svg viewBox="0 0 24 24"><path d="M9 2L7 6m10-4 2 4M6 6h12l1 14H5L6 6z"/></svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-slide hero-slide-1 active">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080'%3E%3Crect fill='%23667eea' width='1920' height='1080'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='200' fill='%23ffffff' opacity='0.1'%3EPSBC%3C/text%3E%3C/svg%3E" alt="Collection Hero">
+            <div class="hero-content">
+                <h1>SPRING/SUMMER<br>COLLECTION</h1>
+                <p>Wealth is of the Heart and Mind</p>
+                <a href="#collections" class="hero-cta">Explore Collection</a>
+            </div>
+        </div>
+        <div class="hero-slide hero-slide-2">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080'%3E%3Crect fill='%231a1a1a' width='1920' height='1080'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='200' fill='%2300D4AA' opacity='0.1'%3EPSBC%3C/text%3E%3C/svg%3E" alt="Collaboration Hero">
+            <div class="hero-content">
+                <h1>EXCLUSIVE<br>COLLABORATIONS</h1>
+                <p>Limited Edition Drops</p>
+                <a href="#collections" class="hero-cta">Shop Collabs</a>
+            </div>
+        </div>
+        <div class="hero-slide hero-slide-3">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080'%3E%3Crect fill='%23f5576c' width='1920' height='1080'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='200' fill='%23ffffff' opacity='0.1'%3EPSBC%3C/text%3E%3C/svg%3E" alt="Essentials Hero">
+            <div class="hero-content">
+                <h1>SIGNATURE<br>ESSENTIALS</h1>
+                <p>Timeless Streetwear</p>
+                <a href="#collections" class="hero-cta">Shop Essentials</a>
+            </div>
+        </div>
+        <div class="hero-nav">
+            <span class="hero-dot active" onclick="setHeroSlide(0)"></span>
+            <span class="hero-dot" onclick="setHeroSlide(1)"></span>
+            <span class="hero-dot" onclick="setHeroSlide(2)"></span>
+        </div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section class="featured-categories">
+        <div class="category-grid">
+            <div class="category-card">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23667eea'/%3E%3Cstop offset='100%25' style='stop-color:%23764ba2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23g1)' width='800' height='600'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='120' font-weight='bold' fill='%23ffffff' opacity='0.2'%3EOUTERWEAR%3C/text%3E%3C/svg%3E" alt="Premium Outerwear">
+                <div class="category-overlay">
+                    <h3 class="category-title">PREMIUM OUTERWEAR</h3>
+                    <a href="#collections" class="category-link">Explore Collection →</a>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23f093fb'/%3E%3Cstop offset='100%25' style='stop-color:%23f5576c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23g2)' width='800' height='600'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='100' font-weight='bold' fill='%23ffffff' opacity='0.2'%3EACCESSORIES%3C/text%3E%3C/svg%3E" alt="Signature Accessories">
+                <div class="category-overlay">
+                    <h3 class="category-title">SIGNATURE ACCESSORIES</h3>
+                    <a href="#collections" class="category-link">Explore Collection →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collection Showcase -->
+    <section class="collection-showcase" id="collections">
+        <div class="section-header">
+            <h2>New Arrivals</h2>
+            <p>Fresh Drops Weekly</p>
+        </div>
+
+        <div class="collection-filters">
+            <button class="filter-btn active" data-category="all">All Products</button>
+            <button class="filter-btn" data-category="apparel">Apparel</button>
+            <button class="filter-btn" data-category="accessories">Accessories</button>
+            <button class="filter-btn" data-category="footwear">Footwear</button>
+        </div>
+
+        <div class="products-grid" id="productsGrid"></div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Shopping Bag</h2>
+            <button class="close-cart" id="closeCart">
+                <svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <div class="empty-cart-icon">
+                    <svg viewBox="0 0 24 24"><path d="M9 2L7 6m10-4 2 4M6 6h12l1 14H5L6 6z"/></svg>
+                </div>
+                <p>Your bag is empty</p>
+            </div>
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display: none;">
+            <div class="cart-subtotal">
+                <span>Subtotal</span>
+                <span id="cartSubtotal">R0</span>
+            </div>
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cartTotal">R0</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+            <div class="secure-notice">
+                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                Secure SSL Encrypted Payment via Stitch
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal-overlay" id="checkoutModal">
+        <div class="checkout-modal">
+            <div class="modal-header">
+                <h2>Secure Checkout</h2>
+                <button class="close-modal" id="closeCheckout">
+                    <svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <div class="modal-content">
+                <form id="checkoutForm">
+                    <div class="form-section">
+                        <h3>Shipping Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>First Name *</label>
+                                <input type="text" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name *</label>
+                                <input type="text" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address *</label>
+                            <input type="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number *</label>
+                            <input type="tel" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Street Address *</label>
+                            <input type="text" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>City *</label>
+                                <input type="text" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Postal Code *</label>
+                                <input type="text" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Country *</label>
+                            <select required>
+                                <option value="">Select Country</option>
+                                <option value="ZA" selected>South Africa</option>
+                                <option value="US">United States</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="CA">Canada</option>
+                                <option value="JP">Japan</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Payment Method</h3>
+                        <div class="payment-methods">
+                            <div class="payment-method active" data-method="stitch">
+                                <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                                Stitch
+                            </div>
+                            <div class="payment-method" data-method="card">
+                                <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                                Card
+                            </div>
+                            <div class="payment-method" data-method="eft">
+                                <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                EFT
+                            </div>
+                        </div>
+
+                        <div class="stitch-info">
+                            <strong>Pay securely with Stitch</strong><br>
+                            Stitch provides bank-level security for all transactions. Your payment details are encrypted and never stored on our servers. Instant bank verification and real-time payment processing.
+                        </div>
+                        
+                        <div id="cardPayment" style="display: none;">
+                            <div class="form-group">
+                                <label>Card Number *</label>
+                                <input type="text" placeholder="1234 5678 9012 3456" maxlength="19">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Expiry Date *</label>
+                                    <input type="text" placeholder="MM/YY" maxlength="5">
+                                </div>
+                                <div class="form-group">
+                                    <label>CVV *</label>
+                                    <input type="text" placeholder="123" maxlength="4">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Cardholder Name *</label>
+                                <input type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-summary">
+                        <h3 style="margin-bottom: 1.5rem;">Order Summary</h3>
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="summarySubtotal">R0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping</span>
+                            <span id="summaryShipping">FREE</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>VAT (15%)</span>
+                            <span id="summaryTax">R0</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span id="summaryTotal">R0</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="place-order-btn">Complete Order</button>
+                    <div class="security-info">
+                        Secured by Stitch Payment Gateway | 256-bit SSL encryption<br>
+                        Free returns within 30 days | Complimentary gift wrapping available
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="checkout-modal">
+            <div class="success-modal">
+                <div class="success-icon">
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <h2>Order Confirmed</h2>
+                <p>
+                    Thank you for your purchase.<br>
+                    Your order <span class="order-number" id="orderNumber">#PSBC-0000</span> has been confirmed.
+                </p>
+                <p>
+                    You will receive a confirmation email with tracking details shortly.
+                </p>
+                <button class="continue-btn" id="continueShopping">Continue Shopping</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Portal -->
+    <div class="admin-portal" id="adminPortal">
+        <div class="admin-header">
+            <h1>PSBC ADMIN PORTAL</h1>
+            <button class="admin-logout" onclick="closeAdmin()">Logout</button>
+        </div>
+        <div class="admin-content">
+            <div class="admin-tabs">
+                <button class="admin-tab active" onclick="showAdminTab('products')">Products</button>
+                <button class="admin-tab" onclick="showAdminTab('orders')">Orders</button>
+                <button class="admin-tab" onclick="showAdminTab('inventory')">Inventory</button>
+            </div>
+
+            <!-- Products Panel -->
+            <div class="admin-panel active" id="admin-products">
+                <div class="product-form">
+                    <h3>Add New Product</h3>
+                    <form id="addProductForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Product Name *</label>
+                                <input type="text" id="productName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Category *</label>
+                                <select id="productCategory" required>
+                                    <option value="">Select Category</option>
+                                    <option value="apparel">Apparel</option>
+                                    <option value="accessories">Accessories</option>
+                                    <option value="footwear">Footwear</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Price (R) *</label>
+                                <input type="number" id="productPrice" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Stock Quantity *</label>
+                                <input type="number" id="productStock" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Badge</label>
+                            <select id="productBadge">
+                                <option value="">None</option>
+                                <option value="new">New</option>
+                                <option value="bestseller">Bestseller</option>
+                                <option value="limited">Limited</option>
+                                <option value="coming-soon">Coming Soon</option>
+                            </select>
+                        </div>
+                        <div class="image-upload">
+                            <label for="productImages">
+                                <strong>Upload Product Images</strong><br>
+                                <span style="font-size: 0.85rem; color: var(--text-light);">Click to select images or drag and drop</span>
+                            </label>
+                            <input type="file" id="productImages" accept="image/*" multiple style="display: none;">
+                            <div class="image-preview" id="imagePreview"></div>
+                        </div>
+                        <button type="submit" class="btn-primary">Add Product</button>
+                    </form>
+                </div>
+
+                <table class="products-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- Orders Panel -->
+            <div class="admin-panel" id="admin-orders">
+                <h3 style="margin-bottom: 2rem;">Recent Orders</h3>
+                <table class="products-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Date</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersTableBody">
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 3rem; color: var(--text-light);">No orders yet</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Inventory Panel -->
+            <div class="admin-panel" id="admin-inventory">
+                <h3 style="margin-bottom: 2rem;">Inventory Management</h3>
+                <table class="products-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Current Stock</th>
+                            <th>Sold</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inventoryTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>PSBC</h3>
+                <p>Park Shop Boyz Club is a luxury streetwear brand rooted in African culture, ambition, and excellence. Founded on the principle that wealth is of the heart and mind, not the pocket.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="#collections">New Arrivals</a></li>
+                    <li><a href="#collections">Collections</a></li>
+                    <li><a href="#collections">Collaborations</a></li>
+                    <li><a href="#collections">Sale</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Stockists</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 Park Shop Boyz Club. All rights reserved. | Privacy Policy | Terms of Service | Powered by Stitch Payments
+        </div>
+    </footer>
+
+    <script src="psbc-app.js"></script>
+</body>
+</html>

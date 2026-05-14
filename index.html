@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PARK SHOP BOYZ CLUB | Coming Soon</title>
+    <meta name="description" content="Wealth is of the Heart and Mind. Luxury African streetwear brand.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #ffffff;
+            --accent: #00D4AA;
+            --text-light: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary);
+            color: var(--secondary);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Subtle background pattern/gradient */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0, 212, 170, 0.05) 0%, transparent 70%);
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: 12px;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #ffffff, #a0a0a0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 4rem;
+            animation: slideUp 2s ease-out;
+        }
+
+        .message {
+            font-size: 1.25rem;
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            color: var(--text-light);
+            animation: fadeIn 3s ease-out;
+        }
+
+        .notify-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            animation: slideUp 3s ease-out;
+        }
+
+        @media (min-width: 600px) {
+            .notify-form {
+                flex-direction: row;
+                gap: 0;
+            }
+        }
+
+        input[type="email"] {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            background: transparent;
+            border: 1px solid #333;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="email"]:focus {
+            border-color: var(--accent);
+        }
+
+        button {
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: var(--primary);
+            border: none;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background: #00B894;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .socials {
+            margin-top: 4rem;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            animation: fadeIn 4s ease-out;
+        }
+
+        .socials a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .socials a:hover {
+            color: var(--accent);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">PSBC</div>
+        <div class="tagline">Wealth is of the Heart and Mind</div>
+        
+        <div class="message">
+            We are preparing something exceptional. Join the exclusive list to be notified the moment the collection drops.
+        </div>
+
+        <form class="notify-form" onsubmit="event.preventDefault(); alert('Added to the exclusive list!');">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">Notify Me</button>
+        </form>
+
+        <div class="socials">
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+        </div>
+    </div>
+</body>
+</html>
